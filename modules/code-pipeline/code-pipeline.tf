@@ -27,6 +27,25 @@ resource "aws_codepipeline" "codepipeline" {
   }
 
   stage {
+    name = "Build"
+
+    action {
+      name             = "Build"
+      category         = "Build"
+      owner            = "AWS"
+      provider         = "CodeBuild"
+      version          = 1
+      run_order        = 1
+      input_artifacts  = ["source_output"]
+      output_artifacts = ["terraform_plan"]
+
+      configuration = {
+        ProjectName = aws_codebuild_project.example.id
+      }
+    }
+  }
+
+  stage {
     name = "Approve"
     action {
         name     = "Approval"

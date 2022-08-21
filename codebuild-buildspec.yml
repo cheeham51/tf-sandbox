@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+        python: 3.x
+    commands:
+      - echo "install"
+
+  build:
+    commands:
+      - echo "haha"
+
+  post_build:
+    commands:
+      - echo "Nothing to do in the post_build for now"
