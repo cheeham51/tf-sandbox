@@ -25,3 +25,12 @@ data "aws_identitystore_group" "sso_admin_group" {
     attribute_value = "Admin"
   }
 }
+
+data "aws_identitystore_group" "sso_developers_group" {
+  identity_store_id = tolist(data.aws_ssoadmin_instances.sso_instance.identity_store_ids)[0]
+
+  filter {
+    attribute_path  = "DisplayName"
+    attribute_value = "Developers"
+  }
+}

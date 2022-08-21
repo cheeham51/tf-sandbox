@@ -23,5 +23,11 @@ provider "aws" {
   profile = "home"
 }
 
+provider "aws" {
+  alias   = "sso"
+  region  = "us-east-1"
+  profile = "home"
+}
+
 data "aws_caller_identity" "current" {
 }
