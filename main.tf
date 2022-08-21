@@ -12,7 +12,7 @@ terraform {
   backend "s3" {
     encrypt = true
     bucket  = "dtony-tf-state"
-    key     = "test-migrate.tfstate"
+    key     = "test.tfstate"
     region  = "ap-southeast-2"
     profile = "home"
   }
@@ -25,5 +25,3 @@ provider "aws" {
 
 data "aws_caller_identity" "current" {
 }
-
-resource "aws_vpc" "main" {}
