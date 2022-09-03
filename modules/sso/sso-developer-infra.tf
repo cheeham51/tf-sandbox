@@ -59,7 +59,17 @@ data "aws_iam_policy_document" "infra_developer_permission_set_inline_policy_doc
     ]
     effect = "Allow"
     resources = [
-      "arn:aws:codepipeline:::*"
+      "*"
+    ]
+  }
+  statement {
+    sid = "codeStarUseConnectionAccess"
+    actions = [
+      "codestar-connections:UseConnection"
+    ]
+    effect = "Allow"
+    resources = [
+      "*"
     ]
   }
 }
