@@ -11,9 +11,8 @@ module "vpc" {
 
   elasticache_subnet_group_name = var.vpc_elasticache_subnet_group_name
 
-  create_elasticache_subnet_route_table = true
+  create_elasticache_subnet_route_table = false
   
-
   enable_dns_hostnames = true
   enable_nat_gateway   = false
   enable_vpn_gateway   = false
