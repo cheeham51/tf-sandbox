@@ -1,6 +1,10 @@
 module "test_vpc" {
   source = "./modules/env-vpc"
-  
+
+  providers = {
+    aws.sso = aws.sso
+  }
+
   env                               = "test"
   vpc_cidr                          = var.cidr_map.home
   vpc_private_subnet_cidr           = var.home_private_subnet_cidr

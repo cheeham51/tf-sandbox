@@ -52,3 +52,18 @@ variable "db_vpc_private_subnet_cidr" {
 variable "db_vpc_database_subnet_group_name" {
   description = "Subnet group name for database"
 }
+
+variable "env_domains" {
+  type        = list(string)
+  description = "The domains for the environment"
+  default = [
+    "squarecity.com.au",
+    "test.squarecity.com.au"
+  ]
+}
+
+variable "route53_main_zone_id" {
+  type        = string
+  description = "The main domain"
+  default     = "Z0073171285WJGH31S21R"
+}
