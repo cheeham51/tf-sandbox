@@ -10,3 +10,13 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "dtony-encrypt" {
     }
   }
 }
+
+resource "null_resource" "deploy_templates" {
+    triggers = {
+      version = "main"
+    }
+
+    provisioner "local-exec" {
+      command     = "${path.root}/modules/s3/deploy.sh ${null_resource.deploy_templates.triggers.version} ${aws_s3_bucket.dtony-workspace.id}"
+    }
+}
