@@ -1,5 +1,10 @@
 locals {
-  // locals go here
+  aws_account_region_sets = [
+    { "alias": "sso", "config_recorder_status": false},
+    { "alias": "", "config_recorder_status": false},
+    { "alias": "development", "config_recorder_status": false},
+    { "alias": "development-use1", "config_recorder_status": false},
+  ]
 }
 
 terraform {
@@ -32,6 +37,14 @@ provider "aws" {
 provider "aws" {
   region = "ap-southeast-2"
   alias  = "development"
+  assume_role {
+    role_arn = "arn:aws:iam::616625844834:role/InfraAdminAccess"
+  }
+}
+
+provider "aws" {
+  region = "us-east-1"
+  alias  = "development-use1"
   assume_role {
     role_arn = "arn:aws:iam::616625844834:role/InfraAdminAccess"
   }
