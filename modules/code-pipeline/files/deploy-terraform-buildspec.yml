@@ -8,6 +8,7 @@ env:
     TF_TARGET: 1
     TF_PLAN_ARGS: ""
     TF_APPLY_ARGS: ""
+    TARGETS: ()
 
 phases:
   install:
@@ -25,18 +26,17 @@ phases:
       - terraform init
       - terraform workspace select test
       - |
-        TARGETS=()
         if [[ TF_TARGET -eq 1 ]]; then
           TARGETS=($(cat test_targets.txt | while read line; do echo -n "-target=$line "; done))
           echo "TARGETS: ${TARGETS[@]}"
         fi
       - |
         if [[ $TF_PLAN -eq 1 ]]; then
-          TARGETS=()
-          if [[ TF_TARGET -eq 1 ]]; then
-            TARGETS=($(cat test_targets.txt | while read line; do echo -n "-target=$line "; done))
-            echo "TARGETS: ${TARGETS[@]}"
-          fi
+          # TARGETS=()
+          # if [[ TF_TARGET -eq 1 ]]; then
+          #   TARGETS=($(cat test_targets.txt | while read line; do echo -n "-target=$line "; done))
+          #   echo "TARGETS: ${TARGETS[@]}"
+          # fi
           terraform plan $TF_PLAN_ARGS ${TARGETS[@]}
         else
           echo "SKIP TERRAFORM PLAN"
