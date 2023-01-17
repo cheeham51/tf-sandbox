@@ -1,3 +1,3 @@
-# module "test-code-pipeline" {
-#   source = "./modules/code-pipeline"
-# }
+module "test-code-pipeline" {
+  source = "./modules/code-pipeline"
+}

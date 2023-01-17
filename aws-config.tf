@@ -1,6 +1,6 @@
 module "aws-config" {
   source = "./modules/aws-config"
-  config_recorder_status = true
+  config_recorder_status = false
   alias = ""
   bucket = "dtony-log-archive-bucket"
 }
@@ -10,7 +10,7 @@ module "aws-config-main-use1" {
   providers = {
     aws = aws.sso
   }
-  config_recorder_status = true
+  config_recorder_status = false
   alias = "sso"
   bucket = "dtony-log-archive-bucket"
 }
@@ -20,7 +20,7 @@ module "aws-config-dev" {
   providers = {
     aws = aws.development
   }
-  config_recorder_status = true
+  config_recorder_status = false
   alias = "development"
   bucket = "dtony-log-archive-bucket"
 }
@@ -30,7 +30,7 @@ module "aws-config-dev-use1" {
   providers = {
     aws = aws.development-use1
   }
-  config_recorder_status = true
+  config_recorder_status = false
   alias = "development-use1"
   bucket = "dtony-log-archive-bucket"
 }

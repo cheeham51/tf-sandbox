@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "s3_access_role_for_cross_assume_policy" {
 
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::516161102907:role/GitHubActionRole", "arn:aws:iam::516161102907:user/admin"]
+      identifiers = ["arn:aws:iam::516161102907:role/GitHubActionRole", "arn:aws:iam::516161102907:user/admin", "arn:aws:iam::516161102907:role/test-role"]
     }
 
   }
