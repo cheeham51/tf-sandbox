@@ -27,7 +27,7 @@ resource "aws_codepipeline" "codepipeline" {
   }
 
   stage {
-    name = "Build"
+    name = "TfPlan"
 
     action {
       name             = "Build"
@@ -56,6 +56,29 @@ resource "aws_codepipeline" "codepipeline" {
     }
   }
 
+  stage {
+    name = "TfApply"
+
+    action {
+      name             = "Build"
+      category         = "Build"
+      owner            = "AWS"
+      provider         = "CodeBuild"
+      version          = 1
+      run_order        = 1
+      input_artifacts  = ["source_output"]
+      output_artifacts = ["terraform_apply"]
+      configuration = {
+        ProjectName = aws_codebuild_project.example.id
+        PrimarySource = "source_output"
+        EnvironmentVariables = jsonencode([
+          { name : "TF_APPLY", value : "1", type : "PLAINTEXT" },
+          { name : "TF_APPLY_ARGS", value : "-auto-approve -no-color", type : "PLAINTEXT" },
+        ])
+      }
+    }
+  }
+
 }
 
 resource "aws_codestarconnections_connection" "tf_sandbox" {
@@ -66,11 +89,6 @@ resource "aws_codestarconnections_connection" "tf_sandbox" {
 resource "aws_s3_bucket" "codepipeline_bucket" {
   bucket = "test-tf-bucket-dtony"
 }
-
-# resource "aws_s3_bucket_acl" "codepipeline_bucket_acl" {
-#   bucket = aws_s3_bucket.codepipeline_bucket.id
-#   acl    = "private"
-# }
 
 resource "aws_iam_role" "codepipeline_role" {
   name = "test-role"
