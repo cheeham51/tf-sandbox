@@ -17,3 +17,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "config-bucket-mai
   }
   provider = aws.development
 }
+
+resource "aws_s3_bucket" "config-bucket-dev-2" {
+  
+  bucket = "config-bucket-616625844834-2"
+  provider = aws.development
+}
