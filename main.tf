@@ -19,19 +19,19 @@ terraform {
     bucket  = "dtony-tf-state"
     key     = "test.tfstate"
     region  = "ap-southeast-2"
-    profile = "home"
+    # profile = "home"
   }
 }
 
 provider "aws" {
   region = "ap-southeast-2"
-  profile = "home"
+  # profile = "home"
 }
 
 provider "aws" {
   alias   = "sso"
   region  = "us-east-1"
-  profile = "home"
+  # profile = "home"
 }
 
 provider "aws" {
