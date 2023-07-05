@@ -24,6 +24,12 @@ resource "null_resource" "deploy_templates" {
 
 resource "aws_s3_bucket" "dtony_lambda_seeds" {
   bucket = "dtony-lambda-seeds"
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_acl" "dtony_lambda_seeds_acl" {
+  bucket = aws_s3_bucket.dtony_lambda_seeds.bucket
+  acl    = "private"
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "dtony_lambda_seeds_encrypt" {
