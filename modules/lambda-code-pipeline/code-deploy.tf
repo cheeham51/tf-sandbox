@@ -46,6 +46,11 @@ resource "aws_codedeploy_deployment_group" "sam_lambda_1_deployment_group" {
   service_role_arn       = aws_iam_role.code_deploy_sam_lambda_iam_role.arn
   deployment_config_name = aws_codedeploy_deployment_config.sam_lambda_1_deployment_config.id
 
+  deployment_style {
+    deployment_option = "WITH_TRAFFIC_CONTROL"
+    deployment_type   = "BLUE_GREEN"
+  }
+
   auto_rollback_configuration {
     enabled = true
     events  = ["DEPLOYMENT_STOP_ON_ALARM"]
