@@ -37,7 +37,7 @@ resource "aws_codepipeline" "codepipeline" {
       version          = 1
       run_order        = 1
       input_artifacts  = ["source_output"]
-      output_artifacts = ["terraform_plan"]
+      output_artifacts = ["build_output"]
 
       configuration = {
         ProjectName = aws_codebuild_project.example.id
@@ -53,6 +53,24 @@ resource "aws_codepipeline" "codepipeline" {
         owner    = "AWS"
         provider = "Manual"
         version  = "1"
+    }
+  }
+
+  stage {
+    name = "Deploy"
+
+    action {
+      name            = "Deploy"
+      category        = "Deploy"
+      owner           = "AWS"
+      provider        = "CodeDeploy"
+      input_artifacts = ["build_output"]
+      version         = "1"
+
+      configuration = {
+        ApplicationName     = aws_codedeploy_app.sam_lambda_1_app.name
+        DeploymentGroupName = aws_codedeploy_deployment_group.sam_lambda_1_deployment_group.id
+      }
     }
   }
 
