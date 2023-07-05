@@ -69,7 +69,7 @@ resource "aws_codepipeline" "codepipeline" {
 
       configuration = {
         ApplicationName     = aws_codedeploy_app.sam_lambda_1_app.name
-        DeploymentGroupName = aws_codedeploy_deployment_group.sam_lambda_1_deployment_group.id
+        DeploymentGroupName = "sam_lambda_1_deployment_group"
       }
     }
   }
