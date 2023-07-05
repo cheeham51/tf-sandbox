@@ -59,16 +59,16 @@ resource "aws_codepipeline" "codepipeline" {
 }
 
 resource "aws_codestarconnections_connection" "tf_sandbox" {
-  name          = "example-connection"
+  name          = "example-connection-1"
   provider_type = "GitHub"
 }
 
 resource "aws_s3_bucket" "codepipeline_bucket" {
-  bucket = "test-tf-bucket-dtony"
+  bucket = "test-tf-bucket-dtony-1"
 }
 
 resource "aws_iam_role" "codepipeline_role" {
-  name = "test-role"
+  name = "test-role-1"
 
   assume_role_policy = <<EOF
 {

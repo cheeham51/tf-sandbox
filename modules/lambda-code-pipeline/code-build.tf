@@ -1,5 +1,5 @@
 resource "aws_iam_role" "example" {
-  name = "test-tf-code-build"
+  name = "test-tf-code-lambda-build"
 
   assume_role_policy = <<EOF
 {
