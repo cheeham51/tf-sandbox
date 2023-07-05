@@ -38,3 +38,10 @@ resource "aws_lambda_function" "lambda" {
   handler       = "app.lambda_handler"
   runtime = "python3.10"
 }
+
+resource "aws_lambda_alias" "lambda_alias" {
+  name             = "prod"
+  description      = "a sample description"
+  function_name    = aws_lambda_function.lambda.arn
+  function_version = "$LATEST"
+}
