@@ -31,7 +31,8 @@ resource "aws_iam_role" "iam_for_lambda" {
 }
 
 resource "aws_lambda_function" "lambda" {
-  filename      = "${path.root}/modules/s3/python_seed_app.zip"
+  filename      = "${path.root}/modules/lambda/python_seed_app.zip"
+  source_code_hash = filebase64sha256("${path.root}/modules/lambda/python_seed_app.zip")
   function_name = var.lambda_function_name
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "app.lambda_handler"
