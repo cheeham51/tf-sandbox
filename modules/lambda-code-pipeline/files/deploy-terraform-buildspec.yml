@@ -2,14 +2,22 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      python: 3.8
     commands:
-      - echo "Installing nothing..."
-      - ls -l
+      - echo Installing dependencies...
+      - pip install --upgrade aws-sam-cli
 
   build:
     commands:
-      - codebuild-breakpoint
+      - echo Build started on `date`
+      - sam build
 
   post_build:
     commands:
       - echo "Nothing to do in the post_build for now"
+
+artifacts:
+  files:
+    - template.yaml
+    - .aws-sam/**
