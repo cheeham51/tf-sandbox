@@ -19,5 +19,4 @@ phases:
 
 artifacts:
   files:
-    - template.yaml
-    - .aws-sam/**
+    - .aws-sam/build/PythonSeedFunction/appspec.yml

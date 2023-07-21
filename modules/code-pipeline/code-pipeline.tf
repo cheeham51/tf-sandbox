@@ -88,6 +88,7 @@ resource "aws_codestarconnections_connection" "tf_sandbox" {
 
 resource "aws_s3_bucket" "codepipeline_bucket" {
   bucket = "test-tf-bucket-dtony"
+  force_destroy = true
 }
 
 resource "aws_iam_role" "codepipeline_role" {

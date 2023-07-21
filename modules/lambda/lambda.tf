@@ -43,5 +43,5 @@ resource "aws_lambda_alias" "lambda_alias" {
   name             = "prod"
   description      = "a sample description"
   function_name    = aws_lambda_function.lambda.arn
-  function_version = "$LATEST"
+  function_version = "1"
 }

@@ -8,6 +8,7 @@ variable "accounts_map" {
   description = "My Accounts"
   default = {
     "home"             = "516161102907"
+    "home-dev"         = "616625844834"
   }
 }
 
