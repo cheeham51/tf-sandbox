@@ -43,10 +43,7 @@ resource "aws_codepipeline" "codepipeline" {
         ProjectName = aws_codebuild_project.example.id
       }
     }
-  }
 
-  stage {
-    name = "Approve"
     action {
         name     = "Approval"
         category = "Approval"
@@ -55,6 +52,17 @@ resource "aws_codepipeline" "codepipeline" {
         version  = "1"
     }
   }
+
+  # stage {
+  #   name = "Approve"
+  #   action {
+  #       name     = "Approval"
+  #       category = "Approval"
+  #       owner    = "AWS"
+  #       provider = "Manual"
+  #       version  = "1"
+  #   }
+  # }
 
   stage {
     name = "TfApply"
