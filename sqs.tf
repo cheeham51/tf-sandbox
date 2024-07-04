@@ -1,3 +1,3 @@
-module "sqs" {
-  source = "./modules/sqs"
-}
+# module "sqs" {
+#   source = "./modules/sqs"
+# }

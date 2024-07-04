@@ -11,7 +11,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.6.2"
+      version = "~> 5.16.2"
     }
   }
   backend "s3" {
@@ -27,8 +27,18 @@ provider "aws" {
 }
 
 provider "aws" {
+  alias   = "melb"
+  region  = "ap-southeast-4"
+}
+
+provider "aws" {
   alias   = "sso"
   region  = "us-east-1"
+}
+
+provider "aws" {
+  region = "ap-southeast-4"
+  alias  = "backup-region"
 }
 
 provider "aws" {

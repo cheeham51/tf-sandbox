@@ -1,5 +1,8 @@
 module "test-s3" {
   source = "./modules/s3"
+  providers = {
+    aws.melb = aws.melb
+  }
 }
 
 resource "aws_s3_bucket" "config-bucket-dev" {

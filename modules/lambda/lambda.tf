@@ -31,17 +31,18 @@ resource "aws_iam_role" "iam_for_lambda" {
 }
 
 resource "aws_lambda_function" "lambda" {
-  filename      = "${path.root}/modules/lambda/python_seed_app.zip"
-  source_code_hash = filebase64sha256("${path.root}/modules/lambda/python_seed_app.zip")
-  function_name = var.lambda_function_name
-  role          = aws_iam_role.iam_for_lambda.arn
-  handler       = "app.lambda_handler"
-  runtime = "python3.10"
+  filename         = "${path.module}/app.zip"
+  source_code_hash = data.archive_file.python_lambda_package.output_base64sha256
+  function_name    = var.lambda_function_name
+  role             = aws_iam_role.iam_for_lambda.arn
+  handler          = "lambda_function.lambda_handler"
+  runtime          = "python3.10"
+  timeout          = 600
+  # architectures    = [ "arm64" ]
 }
 
-resource "aws_lambda_alias" "lambda_alias" {
-  name             = "prod"
-  description      = "a sample description"
-  function_name    = aws_lambda_function.lambda.arn
-  function_version = "1"
+data "archive_file" "python_lambda_package" {
+  type        = "zip"
+  source_dir = "${path.module}/code"
+  output_path = "${path.module}/app.zip"
 }

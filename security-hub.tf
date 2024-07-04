@@ -27,7 +27,3 @@
 #     aws     = aws.development-use1
 #   }
 # }
-
-# resource "aws_securityhub_member" "org_member" {
-#   account_id = "616625844834"
-# }
