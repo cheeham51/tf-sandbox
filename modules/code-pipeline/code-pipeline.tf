@@ -50,6 +50,7 @@ resource "aws_codepipeline" "codepipeline" {
         owner    = "AWS"
         provider = "Manual"
         version  = "1"
+        run_order = 2
     }
   }
 
